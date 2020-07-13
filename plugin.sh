@@ -45,7 +45,7 @@ if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
 fi
 
 if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
-    INSECURE="--insecure --insecure-pull"
+    INSECURE="--insecure --insecure-pull --insecure-registry=${PLUGIN_REPO}"
 fi
 
 if [[ "${PLUGIN_DRYRUN:-}" == "true" ]]; then
