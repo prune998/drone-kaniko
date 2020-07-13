@@ -29,6 +29,7 @@ DOCKERFILE=${PLUGIN_DOCKERFILE:-Dockerfile}
 CONTEXT=${PLUGIN_CONTEXT:-$PWD}
 LOG=${PLUGIN_LOG:-info}
 EXTRA_OPTS=""
+INSECURE=""
 
 if [[ -n "${PLUGIN_TARGET:-}" ]]; then
     TARGET="--target=${PLUGIN_TARGET}"
@@ -40,6 +41,10 @@ fi
 
 if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
     CACHE="--cache=true"
+fi
+
+if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
+    INSECURE="--insecure"
 fi
 
 if [ -n "${PLUGIN_CACHE_REPO:-}" ]; then
@@ -100,6 +105,7 @@ fi
     --context=${CONTEXT} \
     --dockerfile=${DOCKERFILE} \
     ${EXTRA_OPTS} \
+    ${INSECURE} \
     ${DESTINATIONS} \
     ${CACHE:-} \
     ${CACHE_TTL:-} \
