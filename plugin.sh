@@ -30,6 +30,7 @@ CONTEXT=${PLUGIN_CONTEXT:-$PWD}
 LOG=${PLUGIN_LOG:-info}
 EXTRA_OPTS=""
 INSECURE=""
+DRYRUN=""
 
 if [[ -n "${PLUGIN_TARGET:-}" ]]; then
     TARGET="--target=${PLUGIN_TARGET}"
