@@ -44,7 +44,11 @@ if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
 fi
 
 if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
-    INSECURE="--insecure"
+    INSECURE="--insecure --insecure-pull"
+fi
+
+if [[ "${PLUGIN_DRYRUN:-}" == "true" ]]; then
+    DRYRUN="--no-push"
 fi
 
 if [ -n "${PLUGIN_CACHE_REPO:-}" ]; then
@@ -106,6 +110,7 @@ fi
     --dockerfile=${DOCKERFILE} \
     ${EXTRA_OPTS} \
     ${INSECURE} \
+    ${DRYRUN} \
     ${DESTINATIONS} \
     ${CACHE:-} \
     ${CACHE_TTL:-} \

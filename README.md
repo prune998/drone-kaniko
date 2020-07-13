@@ -100,6 +100,54 @@ steps:
       from_secret: docker-password
 ```
 
+## Push and pull to/from insecure registries
+
+`insecure: true`
+
+```yaml
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: golang
+  commands:
+      - go get 
+      - go build
+- name: publish
+  image: akhenakh/drone-kaniko
+  settings:
+    registry: registry.example.com 
+    repo: registry.example.com/example-project
+    insecure: true
+```
+
+## Dry run mode
+
+Build but don't push 
+
+`dryrun: true`
+
+```yaml
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: golang
+  commands:
+      - go build
+
+- name: publish
+  image: akhenakh/drone-kaniko
+  settings:
+    registry: registry.example.com 
+    repo: registry.example.com/example-project
+    dryrun: true
+```
+
+
+
 ## Test that it can build
 
 ```bash
