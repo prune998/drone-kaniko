@@ -47,7 +47,7 @@ if [[ "${PLUGIN_VERBOSE:-}" == "true" ]]; then
 fi
 
 if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
-    EXTRA_OPTS="${EXTRA_OPTS} --insecure --insecure-pull --insecure-registry=${PLUGIN_REPO}"
+    EXTRA_OPTS="${EXTRA_OPTS} --insecure --insecure-pull --insecure-registry=${PLUGIN_REGISTRY}"
 fi
 
 if [[ "${PLUGIN_DRYRUN:-}" == "true" ]]; then
