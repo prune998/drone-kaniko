@@ -146,6 +146,27 @@ steps:
     dryrun: true
 ```
 
+## Verbose mode
+
+`verbose: true`
+
+```yaml
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: golang
+  commands:
+      - go build
+
+- name: publish
+  image: akhenakh/drone-kaniko
+  settings:
+    registry: registry.example.com 
+    repo: registry.example.com/example-project
+    versbose: true
+```
 
 
 ## Test that it can build

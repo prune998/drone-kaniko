@@ -29,27 +29,29 @@ DOCKERFILE=${PLUGIN_DOCKERFILE:-Dockerfile}
 CONTEXT=${PLUGIN_CONTEXT:-$PWD}
 LOG=${PLUGIN_LOG:-info}
 EXTRA_OPTS=""
-INSECURE=""
-DRYRUN=""
 
 if [[ -n "${PLUGIN_TARGET:-}" ]]; then
     TARGET="--target=${PLUGIN_TARGET}"
 fi
 
 if [[ "${PLUGIN_SKIP_TLS_VERIFY:-}" == "true" ]]; then
-    EXTRA_OPTS="--skip-tls-verify=true"
+    EXTRA_OPTS="${EXTRA_OPTS} --skip-tls-verify=true"
 fi
 
 if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
     CACHE="--cache=true"
 fi
 
+if [[ "${PLUGIN_VERBOSE:-}" == "true" ]]; then
+    EXTRA_OPTS="${EXTRA_OPTS} --verbosity=debug"
+fi
+
 if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
-    INSECURE="--insecure --insecure-pull --insecure-registry=${PLUGIN_REPO}"
+    EXTRA_OPTS="${EXTRA_OPTS} --insecure --insecure-pull --insecure-registry=${PLUGIN_REPO}"
 fi
 
 if [[ "${PLUGIN_DRYRUN:-}" == "true" ]]; then
-    DRYRUN="--no-push"
+    EXTRA_OPTS="${EXTRA_OPTS} --no-push"
 fi
 
 if [ -n "${PLUGIN_CACHE_REPO:-}" ]; then
@@ -110,8 +112,6 @@ fi
     --context=${CONTEXT} \
     --dockerfile=${DOCKERFILE} \
     ${EXTRA_OPTS} \
-    ${INSECURE} \
-    ${DRYRUN} \
     ${DESTINATIONS} \
     ${CACHE:-} \
     ${CACHE_TTL:-} \
