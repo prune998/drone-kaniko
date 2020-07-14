@@ -12,3 +12,7 @@ steps:
     insecure: true
     verbose: true
     dockerfile: Dockerfile.test
+
+- name: test_image
+  image: akheakh/drone-kaniko
+  pull: always
