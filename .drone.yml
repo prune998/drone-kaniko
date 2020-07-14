@@ -14,5 +14,8 @@ steps:
     dockerfile: Dockerfile.test
 
 - name: test_image
-  image: akheakh/drone-kaniko
+  image: registry.lan.inair.space:5000/akhenakh/drone-kaniko
   pull: always
+
+image_pull_secrets:
+  - dockerconfigjson
