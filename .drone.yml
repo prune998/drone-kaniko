@@ -16,6 +16,7 @@ steps:
     verbose: true
     auto_tag: true
     dockerfile: Dockerfile.test
+    cache: true
 
 - name: test_image
   image: registry.lan.inair.space/drone-kaniko-test
