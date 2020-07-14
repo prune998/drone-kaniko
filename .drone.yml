@@ -13,7 +13,7 @@ steps:
     registry: registry.lan.inair.space:5000
     repo: drone-kaniko-test
     insecure: true
-    verbose: true
+    #verbose: true
     auto_tag: true
     dockerfile: Dockerfile.test
     cache: true
