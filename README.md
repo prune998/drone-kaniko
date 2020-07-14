@@ -165,7 +165,7 @@ steps:
   settings:
     registry: registry.example.com 
     repo: registry.example.com/example-project
-    versbose: true
+    verbose: true
 ```
 
 

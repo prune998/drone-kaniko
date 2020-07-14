@@ -1,0 +1,14 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build_image
+  image: akhenakh/drone-kaniko
+  pull: always
+  settings:
+    registry: registry.lan.inair.space:5000
+    repo: drone-waiton-test
+    insecure: true
+    verbose: true
+    dockerfile: Dockerfile.test
