@@ -6,6 +6,9 @@ steps:
 - name: build_image
   image: akhenakh/drone-kaniko
   pull: always
+  env:
+    AWS_ACCESS_KEY_ID: NOT_SET
+    AWS_SECRET_KEY: NOT_SET
   settings:
     registry: registry.lan.inair.space:5000
     repo: drone-waiton-test
@@ -16,6 +19,8 @@ steps:
 - name: test_image
   image: registry.lan.inair.space:5000/akhenakh/drone-kaniko
   pull: always
+  cmd:
+    - echo "hello"
 
 image_pull_secrets:
-  - dockerconfigjson
+- dockerconfigjson
