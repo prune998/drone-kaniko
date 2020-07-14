@@ -19,7 +19,7 @@ steps:
 - name: test_image
   image: registry.lan.inair.space:5000/akhenakh/drone-kaniko
   pull: always
-  cmd:
+  commands:
     - echo "hello"
 
 image_pull_secrets:
