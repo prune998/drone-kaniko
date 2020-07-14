@@ -3,7 +3,7 @@ type: docker
 name: default
 
 steps:
-- name: build_image
+- name: build_test_image
   image: akhenakh/drone-kaniko
   pull: always
   environment:
