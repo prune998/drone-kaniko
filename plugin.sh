@@ -8,11 +8,18 @@ REGISTRY=${PLUGIN_REGISTRY:-index.docker.io}
 
 if [ "${PLUGIN_USERNAME:-}" ] || [ "${PLUGIN_PASSWORD:-}" ]; then
     DOCKER_AUTH=`echo -n "${PLUGIN_USERNAME}:${PLUGIN_PASSWORD}" | base64 | tr -d "\n"`
+    
+    # Kaniko use /v2 registry by default and it needs v1 when using dockerhub
+    if  [ "${REGISTRY}"  == "index.docker.io" ]; then
+        AUTH_REGISTRY="https://index.docker.io/v1/"
+    else
+      AUTH_REGISTRY=${REGISTRY}
+    fi
 
     cat > /kaniko/.docker/config.json <<DOCKERJSON
 {
     "auths": {
-        "${REGISTRY}": {
+        "${AUTH_REGISTRY}": {
             "auth": "${DOCKER_AUTH}"
         }
     }
